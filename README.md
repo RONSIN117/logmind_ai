@@ -47,11 +47,12 @@ This project was built strictly adhering to the **IBM Z Datathon Submission Play
 │  TECHNICAL DESIGN  │ NOVELTY & ORIGINAL │  PITCH & DELIVERY  │     COMMUNITY VALUE     │
 │      (Max 10)      │      (Max 10)      │      (Max 10)      │        (Max 10)         │
 ├────────────────────┼────────────────────┼────────────────────┼─────────────────────────┤
-│ ✔ Real L1CC s390x  │ ✔ 100% scratch code│ ✔ 5-min demo script│ ✔ 3.5M analysts cited   │
-│ ✔ XGBoost + Sklearn│ ✔ No lab notebooks │ ✔ Problem & persona│ ✔ Dual Datathon themes  │
-│ ✔ Docker & OpenShift│ ✔ Hybrid AI design│ ✔ Live L1CC screen │ ✔ 'AI for Good' framing │
-│ ✔ Telum & CPACF    │ ✔ Granite reasoning│ ✔ Clear team roles │ ✔ Total audit clarity   │
+│ [x] Real L1CC s390x│ [x] 100% code      │ [x] 5-min demo     │ [x] 3.5M analysts cited │
+│ [x] XGBoost+Sklearn│ [x] No lab copied  │ [x] Problem/persona│ [x] Dual Datathon tracks│
+│ [x] Docker/OCP spec│ [x] Hybrid AI      │ [x] Live L1CC demo │ [x] 'AI for Good' frame │
+│ [x] Telum & CPACF  │ [x] Granite model  │ [x] Team roles     │ [x] Audit transparency  │
 └────────────────────┴────────────────────┴────────────────────┴─────────────────────────┘
+
 ```
 
 ### Category 1: Technical Design (Max 10 Points)
@@ -143,19 +144,19 @@ LogMind includes a built-in benchmark runner comparing three operational paradig
 
 | Evaluation Dimension | Arm A: Naive Raw LLM | Arm B: Prompt-Hardened LLM | Arm C: LogMind on LinuxONE |
 | :--- | :--- | :--- | :--- |
-| **Verdict Integrity** | ❌ **0%** (Fooled to `BENIGN`) | ⚠️ **50%** (Diluted to `MEDIUM`) | 🟢 **100% (`HIGH` Floor Locked)** |
-| **Attacker Payload Exposure** | ❌ **100% Exposed** to AI | ❌ **100% Exposed** to AI | 🟢 **0% (Neutralized to `[UA#2]`)** |
-| **Citation Verification** | ❌ 25% (Fabricated IDs) | ⚠️ 60% (Partial references) | 🟢 **100% Code-Verified IDs** |
-| **Enclave Isolation** | None (Third-party SaaS) | None (Third-party SaaS) | 🟢 **IBM LinuxONE s390x Enclave** |
-| **ML Predictive Grounding**| None | None | 🟢 **XGBoost + IsolationForest** |
+| **Verdict Integrity** | FAILED: 0% (Fooled to `BENIGN`) | PARTIAL: 50% (Diluted to `MEDIUM`) | PROTECTED: 100% (`HIGH` Floor Locked) |
+| **Attacker Payload Exposure** | EXPOSED: 100% Exposed to AI | EXPOSED: 100% Exposed to AI | PROTECTED: 0% (Neutralized to `[UA#2]`) |
+| **Citation Verification** | FAILED: 25% (Fabricated IDs) | PARTIAL: 60% (Partial references) | VERIFIED: 100% Code-Verified IDs |
+| **Enclave Isolation** | None (Third-party SaaS) | None (Third-party SaaS) | ACTIVE (IBM LinuxONE s390x Enclave) |
+| **ML Predictive Grounding**| None | None | ACTIVE (XGBoost + IsolationForest) |
 
 ### 2M-Row Enterprise Stress Test (`datasetIBM_2M.csv`)
 LogMind was stress-tested against the full 2,000,001-row IBM dataset containing injected adversarial payloads:
 - **Total Records Processed:** 2,000,001
 - **Injected Prompt Injections:** 17,811
-- **Prompt Injections Neutralized:** 17,811 / 17,811 (**100.0% Success Rate**)
-- **Attacker Payload Exposure to Model:** **0.0%**
-- **Severity Floor Invariant Violations:** **0**
+- **Prompt Injections Neutralized:** 17,811 / 17,811 (100.0% Success Rate)
+- **Attacker Payload Exposure to Model:** 0.0%
+- **Severity Floor Invariant Violations:** 0
 - **Hardware Stability:** Sub-millisecond latency, zero memory leaks on LinuxONE.
 
 ---
@@ -198,15 +199,15 @@ Querying the live LinuxONE server (`http://148.100.76.106:8000/api/status` and `
 ## 7. Live Demonstration Guide for Judges (5 Minutes)
 
 1. **The Hook (30 sec):**  
-   Click `⚡ Attack & Prompt Injection` to load the sample incident. Point out the attacker's malicious instruction hidden inside the web log's `User-Agent`.
+   Click "Attack & Prompt Injection" to load the sample incident. Point out the attacker's malicious instruction hidden inside the web log's `User-Agent`.
 2. **Pre-Flight Data Guard (1 min):**  
-   Click `🛡️ 1. Upload Data Guard`. Show the pre-flight scan flagging credentials, tokens, and IP addresses with instant redaction preview.
+   Click "1. Upload Data Guard". Show the pre-flight scan flagging credentials, tokens, and IP addresses with instant redaction preview.
 3. **Analyze with LogMind (1.5 min):**  
-   Click `🧠 2. Analyze with LogMind`. Show the `HIGH` alert banner with the **Deterministic Severity Floor** locked. Point out the XGBoost anomaly score (`54.40%`) and click `🔗 Event #4` to demonstrate instant highlighting in the telemetry timeline.
+   Click "2. Analyze with LogMind". Show the `HIGH` alert banner with the **Deterministic Severity Floor** locked. Point out the XGBoost anomaly score (`54.40%`) and click "Event #4" to demonstrate instant highlighting in the telemetry timeline.
 4. **"What the AI Saw" Inspector (1 min):**  
    In the split view, contrast the analyst's vault (where the raw injection is safely isolated) against the model's sanitized JSON (where it received only `[UA#2]`).
 5. **Attack Replay Benchmark (1 min):**  
-   Click `⚔️ 3. Attack Replay (3-Arm Benchmark)`. Show side-by-side how Arm A fell victim to the injection, while Arm C on LinuxONE remained 100% impervious.
+   Click "3. Attack Replay (3-Arm Benchmark)". Show side-by-side how Arm A fell victim to the injection, while Arm C on LinuxONE remained 100% impervious.
 
 ---
 

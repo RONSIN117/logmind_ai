@@ -166,11 +166,12 @@ Integrates two open-source AI frameworks natively running on `s390x`:
 
 | Evaluation Dimension | Arm A: Naive Raw LLM | Arm B: Prompt-Hardened LLM | Arm C: LogMind on LinuxONE |
 | :--- | :--- | :--- | :--- |
-| **Verdict Integrity** | ❌ **0%** (Fooled to `BENIGN`) | ⚠️ **50%** (Diluted to `MEDIUM`) | 🟢 **100% (`HIGH` Floor Locked)** |
-| **Attacker Payload Exposure** | ❌ **100% Exposed** to AI | ❌ **100% Exposed** to AI | 🟢 **0% (Neutralized to `[UA#2]`)** |
-| **Citation Verification** | ❌ 25% (Fabricated IDs) | ⚠️ 60% (Partial references) | 🟢 **100% Code-Verified IDs** |
-| **Enclave Isolation** | None (Third-party SaaS) | None (Third-party SaaS) | 🟢 **IBM LinuxONE s390x Enclave** |
-| **ML Predictive Grounding**| None | None | 🟢 **XGBoost + IsolationForest** |
+| **Verdict Integrity** | FAILED: 0% (Fooled to `BENIGN`) | PARTIAL: 50% (Diluted to `MEDIUM`) | PROTECTED: 100% (`HIGH` Floor Locked) |
+| **Attacker Payload Exposure** | EXPOSED: 100% Exposed to AI | EXPOSED: 100% Exposed to AI | PROTECTED: 0% (Neutralized to `[UA#2]`) |
+| **Citation Verification** | FAILED: 25% (Fabricated IDs) | PARTIAL: 60% (Partial references) | VERIFIED: 100% Code-Verified IDs |
+| **Enclave Isolation** | None (Third-party SaaS) | None (Third-party SaaS) | ACTIVE (IBM LinuxONE s390x Enclave) |
+| **ML Predictive Grounding**| None | None | ACTIVE (XGBoost + IsolationForest) |
+
 
 ### 5.2 2-Million Row Stress Test (`datasetIBM_2M.csv`)
 LogMind was stress-tested against the full 2,000,001-row IBM dataset containing injected adversarial payloads:
