@@ -19,7 +19,6 @@
 > - **Live IBM LinuxONE s390x Hardware Telemetry:** [http://148.100.76.106:8000/api/status](http://148.100.76.106:8000/api/status)
 > - **Live ML Ensemble & Granite Status:** [http://148.100.76.106:8000/api/ml-status](http://148.100.76.106:8000/api/ml-status)
 > - **Full Technical & Architectural Report:** [PROJECT_DOCUMENTATION.md](PROJECT_DOCUMENTATION.md)
-> - **5-Minute Live Walkthrough Script:** [Section 7: Live Demonstration Guide](#7-live-demonstration-guide-for-judges-5-minutes)
 > - **2M-Row Neutralization Validation:** [Section 4: Stress Test Results](#2m-row-enterprise-stress-test-datasetibm_2mcsv)
 
 ---
@@ -85,7 +84,7 @@ This project was built strictly adhering to the **IBM Z Datathon Submission Play
 * **Structured Predictive Models Paired with IBM Granite:** XGBoost anomaly scores and deterministic rule outputs directly feed into `IBM Granite 3.1 Instruct` role templates (`<|start_of_role|>`), preventing semantic confusion while delivering grounded explanations.
 
 ### Category 3: Pitch & Delivery (Max 10 Points)
-* **Strict Adherence to Time Limits:** Includes a concise 5-minute judge demonstration script ([Section 7](#7-live-demonstration-guide-for-judges-5-minutes)).
+* **Strict Adherence to Time Limits:** Structured for rapid, efficient review within the published competition guidelines.
 * **Clear Persona & Value Proposition:** Built for Tier-1 SOC analysts drowning in 500+ alerts daily; eliminates alert fatigue without introducing prompt injection risk.
 * **Live Interactive Demo on LinuxONE:** Real-time web UI running on port 8000 connected directly to the `s390x` host via keepalive SSH tunnels.
 * **Explicit Team Member Roles:** Defined governance across architecture, ML, platform engineering, and red-team evaluation ([Section 6](#6-team-roles--contributions)).
@@ -207,22 +206,7 @@ Querying the live LinuxONE server (`http://148.100.76.106:8000/api/status` and `
 
 ---
 
-## 7. Live Demonstration Guide for Judges (5 Minutes)
-
-1. **The Hook (30 sec):**  
-   Click "Attack & Prompt Injection" to load the sample incident. Point out the attacker's malicious instruction hidden inside the web log's `User-Agent`.
-2. **Pre-Flight Data Guard (1 min):**  
-   Click "1. Upload Data Guard". Show the pre-flight scan flagging credentials, tokens, and IP addresses with instant redaction preview.
-3. **Analyze with LogMind (1.5 min):**  
-   Click "2. Analyze with LogMind". Show the `HIGH` alert banner with the **Deterministic Severity Floor** locked. Point out the XGBoost anomaly score (`54.40%`) and click "Event #4" to demonstrate instant highlighting in the telemetry timeline.
-4. **"What the AI Saw" Inspector (1 min):**  
-   In the split view, contrast the analyst's vault (where the raw injection is safely isolated) against the model's sanitized JSON (where it received only `[UA#2]`).
-5. **Attack Replay Benchmark (1 min):**  
-   Click "3. Attack Replay (3-Arm Benchmark)". Show side-by-side how Arm A fell victim to the injection, while Arm C on LinuxONE remained 100% impervious.
-
----
-
-## 8. Installation & Deployment
+## 7. Installation & Deployment
 
 ### Quick Local Start
 ```bash
@@ -259,5 +243,6 @@ docker run -d -p 8000:8000 --name logmind logmind:latest
 
 ---
 
-## 9. License
+## 8. License
 Distributed under the Apache 2.0 License. See `LICENSE` for more information.
+
