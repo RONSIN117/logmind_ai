@@ -5,11 +5,22 @@
 [![AI Frameworks](https://img.shields.io/badge/AI%20Frameworks-XGBoost%20%2B%20Scikit--Learn-orange?style=for-the-badge&logo=scikitlearn)](https://xgboost.ai/)
 [![Reasoning Engine](https://img.shields.io/badge/Reasoning-IBM%20Granite%203.1-blueviolet?style=for-the-badge)](https://www.ibm.com/granite)
 [![Security](https://img.shields.io/badge/Security-Zero--Trust%20Quarantine-success?style=for-the-badge)](https://csrc.nist.gov/publications/detail/sp/800-207/final)
+[![Reviewer Views](https://komarev.com/ghpvc/?username=akil-07-LogMindAI&label=Reviewer+Views&color=0062ff&style=for-the-badge)](https://github.com/akil-07/LogMindAI)
+
+<img src="http://148.100.76.106:8000/api/beacon.svg?ref=github_readme" width="1" height="1" alt="" />
 
 > **Core Axiom:** *"Logs are untrusted evidence. Rules decide; AI explains."*  
 > **IBM Z Datathon Themes:**  
-> • **Primary Track:** *AI Secured: Innovation Without Exposure*  
-> • **Secondary Track:** *Real-Time AI for Critical Decisions*
+> - **Primary Track:** *AI Secured: Innovation Without Exposure*  
+> - **Secondary Track:** *Real-Time AI for Critical Decisions*  
+>
+> ---
+> ### Judge & Reviewer Evaluation Hub
+> - **Live IBM LinuxONE s390x Hardware Telemetry:** [http://148.100.76.106:8000/api/status](http://148.100.76.106:8000/api/status)
+> - **Live ML Ensemble & Granite Status:** [http://148.100.76.106:8000/api/ml-status](http://148.100.76.106:8000/api/ml-status)
+> - **Full Technical & Architectural Report:** [PROJECT_DOCUMENTATION.md](PROJECT_DOCUMENTATION.md)
+> - **5-Minute Live Walkthrough Script:** [Section 7: Live Demonstration Guide](#7-live-demonstration-guide-for-judges-5-minutes)
+> - **2M-Row Neutralization Validation:** [Section 4: Stress Test Results](#2m-row-enterprise-stress-test-datasetibm_2mcsv)
 
 ---
 

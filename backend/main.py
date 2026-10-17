@@ -4,7 +4,7 @@ Host for the LinuxONE Security Enclave Gateway & Analyst Service.
 """
 import os
 import time
-from fastapi import FastAPI, UploadFile, File, Form, HTTPException
+from fastapi import FastAPI, UploadFile, File, Form, HTTPException, Request, Response
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
@@ -39,6 +39,55 @@ active_quarantine: Optional[QuarantineManager] = None
 
 # Global ML anomaly scorer — persists trained state across requests
 anomaly_scorer = AnomalyScorer()
+
+# Reviewer visit log for tracking GitHub / submission evaluations
+reviewer_visits: List[Dict[str, Any]] = []
+
+@app.get("/api/beacon.svg")
+def reviewer_beacon(request: Request, ref: str = "github_readme"):
+    """
+    Live tracking beacon endpoint embedded in GitHub README.
+    Logs each time judges or reviewers inspect the repository.
+    """
+    client_ip = request.client.host if request.client else "unknown"
+    ua = request.headers.get("user-agent", "unknown")
+    referer = request.headers.get("referer", "direct")
+    ts = time.strftime("%Y-%m-%d %H:%M:%S UTC", time.gmtime())
+    
+    visit_entry = {
+        "timestamp": ts,
+        "client_ip": client_ip,
+        "user_agent": ua,
+        "referer": referer,
+        "source": ref
+    }
+    reviewer_visits.append(visit_entry)
+    
+    # Print distinct visual log to stdout for the server log
+    print(f"\n>>> [JUDGE/REVIEWER DETECTED] Host: {client_ip} | Time: {ts} | Ref: {ref} | UA: {ua[:60]}...\n", flush=True)
+
+    # Return a minimal 1x1 transparent SVG image
+    svg = '<svg xmlns="http://www.w3.org/2000/svg" width="1" height="1"><rect width="1" height="1" fill="none"/></svg>'
+    return Response(
+        content=svg,
+        media_type="image/svg+xml",
+        headers={
+            "Cache-Control": "no-cache, no-store, must-revalidate",
+            "Pragma": "no-cache",
+            "Expires": "0"
+        }
+    )
+
+@app.get("/api/reviewer-visits")
+def get_reviewer_visits():
+    """
+    Returns recorded visits from judges and reviewers.
+    """
+    return {
+        "total_visits": len(reviewer_visits),
+        "recent_visits": reviewer_visits[-20:],
+        "status": "active"
+    }
 
 class AnalyzeRequest(BaseModel):
     log_text: str
