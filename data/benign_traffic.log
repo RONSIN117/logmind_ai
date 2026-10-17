@@ -1,0 +1,4 @@
+Oct 17 09:00:10 edge-auth-01 sshd[12001]: Accepted publickey for backup-service from 10.0.1.50 port 51230 ssh2
+Oct 17 09:00:15 edge-auth-01 sudo[12015]: backup-service : TTY=pts/0 ; PWD=/ ; USER=root ; COMMAND=/usr/bin/rsync -av /data /backup
+10.0.1.50 - backup-service [17/Oct/2026:09:00:18 +0000] "GET /healthz HTTP/1.1" 200 15 "-" "Prometheus/2.45.0"
+10.0.1.50 - backup-service [17/Oct/2026:09:01:02 +0000] "POST /api/backup/status HTTP/1.1" 200 128 "-" "Go-http-client/1.1"

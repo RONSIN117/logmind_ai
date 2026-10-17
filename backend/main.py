@@ -109,6 +109,16 @@ def get_sample_logs():
         if os.path.exists(path):
             with open(path, "r", encoding="utf-8") as f:
                 samples[name] = f.read()
+                
+    # In-memory fallback if files are not present on container disk
+    if not samples.get("combined_attack.log"):
+        try:
+            from data.generate_data import COMBINED_ATTACK_LOG, PII_LEAKAGE_LOG, BENIGN_LOG
+            samples["combined_attack.log"] = COMBINED_ATTACK_LOG.strip()
+            samples["pii_leakage.log"] = PII_LEAKAGE_LOG.strip()
+            samples["benign_traffic.log"] = BENIGN_LOG.strip()
+        except Exception:
+            pass
     return samples
 
 @app.post("/api/upload-guard")

@@ -1,0 +1,3 @@
+"""
+LogMind Data Fixtures Package
+"""

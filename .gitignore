@@ -19,6 +19,8 @@ venv/
 
 # Logs & temp files
 *.log
+!data/*.log
 *.tar.gz
 scratch/
 .system_generated/
+

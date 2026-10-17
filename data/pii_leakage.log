@@ -1,0 +1,5 @@
+Oct 17 08:30:11 sso-gateway app[8910]: INFO User login initiated: email=sarah.connor@cyberdyne-sys.com, client_ip=172.16.24.89
+Oct 17 08:30:12 sso-gateway app[8910]: DEBUG OAuth callback token received: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IlNhcmFoIENvbm5vciIsImFkbWluIjp0cnVlfQ.k8sX9_vT91qW0z82k
+Oct 17 08:30:15 api-gateway app[9012]: WARN DB connection retry: postgresql://db_admin:P@ssw0rd2026!SecureKey@10.240.12.8:5432/core_production
+Oct 17 08:30:18 api-gateway app[9012]: ERROR Payment webhook failed for customer_id=CUST-8819 contact=finance-alerts@cyberdyne-sys.com with ssn_last4=8492
+Oct 17 08:30:22 api-gateway app[9012]: INFO API key rotated: key=api_key_test_9948201a8f9c4b2e8174092d0c11
