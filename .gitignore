@@ -1,0 +1,24 @@
+# Secrets & Credentials
+*.pem
+*.key
+*.id_rsa
+.env
+secrets/
+
+# Large Datasets (>100MB exceeds GitHub push limits)
+datasetIBM_2M.csv
+*.csv.gz
+
+# Python cache & virtual environments
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+env/
+venv/
+
+# Logs & temp files
+*.log
+*.tar.gz
+scratch/
+.system_generated/

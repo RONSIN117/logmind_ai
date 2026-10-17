@@ -1,0 +1,82 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: logmind-enclave-deployment
+  namespace: ibm-datathon
+  labels:
+    app: logmind
+    architecture: s390x
+    platform: linuxone
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: logmind
+  template:
+    metadata:
+      labels:
+        app: logmind
+        architecture: s390x
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: kubernetes.io/arch
+                operator: In
+                values:
+                - s390x
+      containers:
+      - name: logmind
+        image: image-registry.openshift-image-registry.svc:5000/ibm-datathon/logmind:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8000
+        resources:
+          limits:
+            cpu: "2"
+            memory: "4Gi"
+          requests:
+            cpu: "500m"
+            memory: "1Gi"
+        readinessProbe:
+          httpGet:
+            path: /api/status
+            port: 8000
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        livenessProbe:
+          httpGet:
+            path: /api/status
+            port: 8000
+          initialDelaySeconds: 10
+          periodSeconds: 15
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: logmind-service
+  namespace: ibm-datathon
+spec:
+  selector:
+    app: logmind
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8000
+  type: ClusterIP
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: logmind-route
+  namespace: ibm-datathon
+spec:
+  to:
+    kind: Service
+    name: logmind-service
+  port:
+    targetPort: 8000
+  tls:
+    termination: edge
